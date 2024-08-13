@@ -1,6 +1,7 @@
 package com.example.hanzanhae.ui.theme
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
@@ -20,64 +21,70 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.hanzanhae.R
 
-
 @Composable
-fun CompleteScreen(){
+fun MapScreen(navController:NavController){
     Box(
         modifier = Modifier
             .fillMaxSize()
     ){
-        Image(
-            painter = painterResource(id = R.drawable.flower),
-            contentDescription = "구독 완료 화면",
-            modifier = Modifier
-                .align(Alignment.Center)
-                .padding(bottom=100.dp)
-                .width(296.dp)
-                .height(125.dp)
-        )
         Text(
-            text = "구독이 완료되었습니다!",
+            text = "2024년에는 이런 술을 \n보내드려요",
             style = TextStyle(
                 fontSize = 30.sp,
-                fontWeight = FontWeight(1000),
+                fontWeight = FontWeight(900),
                 color = Color(0xFFDC5555)
             ),
             modifier = Modifier
-                .align(Alignment.Center)
-                .padding(top=130.dp),
+                .align(Alignment.TopCenter)
+                .padding(top=110.dp)
         )
-        Button(
-            onClick = { /*TODO*/ },
+        Text(
+            text = "아래 지도를 눌러보세요",
+            style = TextStyle(
+                fontSize = 16.sp,
+                fontWeight = FontWeight(900),
+                color = Color(0xFFE67171)
+            ),
+            modifier = Modifier
+                .padding(top=220.dp,start = 55.dp)
+        )
+        Image(
+            painter = painterResource(id = R.drawable.map),
+            contentDescription = "구독 완료 화면",
             modifier = Modifier
                 .align(Alignment.BottomCenter)
-                .padding(bottom = 64.dp)
-                .width(330.dp)
-                .height(37.dp),
-
+                .padding(bottom=135.dp)
+                .width(296.dp)
+                .height(440.dp)
+        )
+        Button(
+            onClick = {
+                navController.navigate("alchol-description")
+            },
+            modifier = Modifier
+                .align(Alignment.BottomStart)
+                .padding(start=120.dp,bottom = 290.dp)
+                .height(60.dp)
+                .width(80.dp),
             colors = ButtonDefaults.buttonColors(
-                containerColor =  Color(0xFFDC5555),
-                contentColor = Color.White
+                containerColor = Color.Transparent,
+
             ),
             shape = RoundedCornerShape(12.dp),
-            content = {
-                Text(
-                    text="메인으로 돌아가기",
-                    style = TextStyle(
-                        fontSize = 14.sp,
-                        fontWeight = FontWeight(700)
-                    ))
-            }
+            content = {}
         )
-
     }
+
 
 }
 
+
 @Preview(showBackground = true)
 @Composable
-private fun CompletePreview() {
-    CompleteScreen()
+private fun MapScreenPreview() {
+    MapScreen(navController = rememberNavController())
 }

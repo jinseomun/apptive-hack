@@ -1,5 +1,6 @@
 package com.example.hanzanhae
 
+import AlcholDescription
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -15,8 +16,10 @@ import androidx.navigation.NavGraph
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.hanzanhae.ui.theme.CompleteScreen
 import com.example.hanzanhae.ui.theme.FirstLand
 import com.example.hanzanhae.ui.theme.HanzanhaeTheme
+import com.example.hanzanhae.ui.theme.MapScreen
 import com.example.hanzanhae.ui.theme.SecondLand
 import com.example.hanzanhae.ui.theme.ThirdLand
 
@@ -39,10 +42,13 @@ class MainActivity : ComponentActivity() {
     @Composable
     fun NavGraph(navController: NavController) {
         val navController = rememberNavController()
-        NavHost(navController = navController, startDestination = "first-land") {
+        NavHost(navController = navController, startDestination = "map") {
             composable("first-land") { FirstLand(navController)}
             composable("second-land") { SecondLand(navController) }
             composable("third-land"){ ThirdLand()}
+            composable("complete"){ CompleteScreen()}
+            composable("alchol-description"){AlcholDescription()}
+            composable("map"){ MapScreen(navController)}
         }
     }
 
